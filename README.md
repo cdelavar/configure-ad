@@ -111,7 +111,7 @@ Install Active Directory. Use Server Manager to install AD. In the Windows Serve
 <img src="https://imgur.com/81mnn1y.png" height="80%" width="80%" alt="Add Roles and Features"/>
 </p>
 <p>
-click Next and choose Role-based or feature-based installation.  
+Click Next and choose Role-based or feature-based installation.  
 </p>
 <br />
 
@@ -287,17 +287,10 @@ Login with the new user credentials is successful.
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://imgur.com/MkrDZJX.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Let's try password locking bana.niri out of their account. Enter an incorrect password a 10 times while trying to remote into Client-1. 
+Let's try password locking bana.niri out of their account. Enter an incorrect password 10 times while trying to remote into Client-1. Login to DC-1 and navigate to Active Directory Users and Computers. Go to the EMPLOYEES folder and right click on the user, then click on the Account tab. Click Unlock account and Apply changes.
 </p>
 <br />
 
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
