@@ -76,6 +76,70 @@ Click on Static and then Save.
 <br />
 
 <p>
+<img src="https://imgur.com/SbvTkAN.png" height="80%" width="80%" alt="Ping DC-1"/>
+</p>
+<p>
+Login to Client-1 and ping DC-1's private IP address. Windows firewall is blocking icmp traffic so the request will time out.
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/TMF00VE.png" height="80%" width="80%" alt="Windows Firewall"/>
+</p>
+<p>
+Login to DC-1 and type wf.msc in the start menu to open the Windows Firewall Console. Click inbound rules and enable 2 ICMP echo request rules. 
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/UXG1rj7.png" height="80%" width="80%" alt="Successful Ping DC-1"/>
+</p>
+<p>
+Now there can be connectivity between the client and domain controller.
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/bl05K69.png" height="80%" width="80%" alt="Server Manager"/>
+</p>
+<p>
+Install Active Directory. USe Server Manager to install AD. In the Windows Server Manager, go to Add roles and features.
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/81mnn1y.png" height="80%" width="80%" alt="Add Roles and Features"/>
+</p>
+<p>
+click Next and choose Role-based or feature-based installation.  
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/7Erzv2s.png" height="80%" width="80%" alt="Select Server"/>
+</p>
+<p>
+Select a server from the server pool.
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/EVRtqcD.png" height="80%" width="80%" alt="Domain Services"/>
+</p>
+<p>
+Check the box for Active Directory Domain Services, then click Next through the rest of the dependencies and confirm installation.
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/FwCZw9R.png" height="80%" width="80%" alt="Finish Install"/>
+</p>
+<p>
+Finish installing Active Directory and turn the server into a domain controller. Click on the notifications flag in the top right corner, and click on Promote this server to a domain controller. In the Deployment Configuration window, click on Add a new forest and enter a Root domain name. Leave the default checked boxes as is, and enter a password for the Directory Services Restore Mode then click Next through to installation. You can specify the location of the AD DS database, log files, and SYSVOL, in this case, the default is fine, click Next. The server will reboot automatically after installation is complete.
+</p>
+<br />
+
+<p>
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
