@@ -63,15 +63,15 @@ click Networking. Click on the Network Interface name, in this case it's dc-175.
 <img src="https://imgur.com/uHzoPhY.png" height="80%" width="80%" alt="DC NIC to Static 2"/>
 </p>
 <p>
-Click on IP configurations, then click on ipconfig1, under Assignment.
+Click on IP configurations, then click on ipconfig1.
 </p>
 <br />
 
 <p>
-<img src="https://imgur.com/uHzoPhY.png" height="80%" width="80%" alt="DC NIC to Static 3"/>
+<img src="https://imgur.com/RaDQv9V.png" height="80%" width="80%" alt="DC NIC to Static 3"/>
 </p>
 <p>
-Click on Static and then Save.
+Under Assignment, click on Static and then Save.
 </p>
 <br />
 
