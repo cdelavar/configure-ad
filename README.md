@@ -135,7 +135,154 @@ Check the box for Active Directory Domain Services, then click Next through the 
 <img src="https://imgur.com/FwCZw9R.png" height="80%" width="80%" alt="Finish Install"/>
 </p>
 <p>
-Finish installing Active Directory and turn the server into a domain controller. Click on the notifications flag in the top right corner, and click on Promote this server to a domain controller. In the Deployment Configuration window, click on Add a new forest and enter a Root domain name. Leave the default checked boxes as is, and enter a password for the Directory Services Restore Mode then click Next through to installation. You can specify the location of the AD DS database, log files, and SYSVOL, in this case, the default is fine, click Next. The server will reboot automatically after installation is complete.
+Finish installing Active Directory and turn the server into a domain controller. Click on the notifications flag in the top right corner, and click on Promote this server to a domain controller. 
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/whMoL5j.png" height="80%" width="80%" alt="Create Forest"/>
+</p>
+<p>
+In the Deployment Configuration window, click on Add a new forest and enter a Root domain name. Leave the default checked boxes as is, and enter a password for the Directory Services Restore Mode then click Next through to installation.
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/1pG4cpY.png" height="80%" width="80%" alt="AD DS Options"/>
+</p>
+<p>
+You can specify the location of the AD DS database, log files, and SYSVOL, in this case, the default is fine, click Next. The server will reboot automatically after installation is complete.
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/dCbw4va.png" height="80%" width="80%" alt="AD Users and Computers"/>
+</p>
+<p>
+After restart, logon to the DC-1 from the newly created domain using the FQDN (Fully qualified domain name). Now that the domain is setup, we can create 
+organizational units in Active Directory and create an administrative user.
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/q41Jdlk.png" height="80%" width="80%" alt="New Organizational Unit"/>
+</p>
+<p>
+Click on tools in the top right corner and go to Active Directory Users and Computers. Right click on the domain name in the left side panel and go to 
+New - Organizational Unit. 
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/IvXs2L0.png" height="80%" width="80%" alt="Employees and Admins"/>
+</p>
+<p>
+Let's add an OU for EMPLOYEES and ADMINS.
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/Q3WytW3.png" height="80%" width="80%" alt="Create Admin User"/>
+</p>
+<p>
+To create an admin user, right click on ADMINS, click New then User. In this case, Username: Ermingard_admin. Fill out the user details and password options. 
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/Bi5dx9L.png" height="80%" width="80%" alt="Domain Admins Group"/>
+</p>
+<p>
+Now we need to assign the admin user to the domain admins group. Right click on the user name and go to Properties, click on the Member Of tab, click Add. In the Select Groups box type Domain Admins in the "Enter the object names to select" box, then click ok. 
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/LcPSiLc.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+Logoff of DC-1 and login again with the newly created admin account. The next step is to join Client-1 to the domain. In order to join the domain, Client-1 needs to use the domain controller as its DNS server. From the Azure portal, set Client-1's DNS settings to DC-1's Private IP address. Set Client-1's Virtual NIC to DC-1's private IP address by going to the Azure Portal - Virtual Machines, and click on Client-1. Click on Networking, then click on the Network Interface. 
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/fsQptHs.png" height="80%" width="80%" alt="Change DNS Settings"/>
+</p>
+<p>
+Click on DNS Servers and click on the Custom bubble. In the DNS Server box, type in the private IP address of DC-1 and click Save. 
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/e13gOuJ.png" height="80%" width="80%" alt="Restart Client-1"/>
+</p>
+<p>
+Restart Client-1 from the Azure portal. 
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/4aXYf1n.png" height="80%" width="80%" alt="Rename PC Advanced"/>
+</p>
+<p>
+Now we need to join Client-1 to the domain. Login to Client-1 again, and go to System settings and click on Rename this PC (advanced). 
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/28trYJE.png" height="80%" width="80%" alt="Add Domain"/>
+</p>
+<p>
+Click on Change, and in the "Member Of" section, click the Domain bubble and enter the name of the domain. 
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/6HO4KzL.png" height="80%" width="80%" alt="Admin Credentials"/>
+</p>
+<p>
+Enter the credentials for the admin account that was created earlier. In this case, it's chrisdomain.com\Ermingard_admin. Now the admin can login to Client-1 through the domain. 
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/puY3fkS.png" height="80%" width="80%" alt="Domain Users Setup"/>
+</p>
+<p>
+Next, we'll set up all users to be able to remote in through Client-1. Go to System Settings - Remote Desktop, and click on Select users that can remotely access this PC. On the Remote Desktop Users popup, click Add. In the Select Users or Groups poput, type in Domain Users and click ok. 
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/hVu8v0p.png" height="80%" width="80%" alt="Powershell ISE Script"/>
+</p>
+<p>
+Let's create a bunch of additional users and attempt to login to Client-1 with one of the users. Log into DC-1. To create the users, we're going to run a script in 
+Powershell ISE. Right click Powershell ISE and run as administrator. 
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/qwaWYkr.png" height="80%" width="80%" alt="Users Created"/>
+</p>
+<p>
+This script will create 1,000 new users in the EMPLOYEES organizational unit folder. The names are randomly generated by alternating vowels and consonants randomly, one after the other.
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/rL19S8k.png" height="80%" width="80%" alt="New User Login Client-1"/>
+</p>
+<p>
+ Let's try to login to Client-1 with one of the newly created user credentials. For this example, it will be bana.niri
+</p>
+<br />
+
+<p>
+<img src="https://imgur.com/e4PuHFw.png" height="80%" width="80%" alt="Login Success"/>
+</p>
+<p>
+Login with the new user credentials is successful.
 </p>
 <br />
 
@@ -143,15 +290,7 @@ Finish installing Active Directory and turn the server into a domain controller.
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
-
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Let's try password locking bana.niri out of their account. Enter an incorrect password a 10 times while trying to remote into Client-1. 
 </p>
 <br />
 
