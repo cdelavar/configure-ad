@@ -79,7 +79,7 @@ Under Assignment, click on Static and then Save.
 <img src="https://imgur.com/SbvTkAN.png" height="80%" width="80%" alt="Ping DC-1"/>
 </p>
 <p>
-Login to Client-1 and ping DC-1's private IP address. Windows firewall is blocking icmp traffic so the request will time out.
+Login to Client-1 and ping DC-1's private IP address. Windows firewall is blocking ICMP traffic so the request will time out.
 </p>
 <br />
 
@@ -103,7 +103,7 @@ Now there can be connectivity between the client and domain controller.
 <img src="https://imgur.com/bl05K69.png" height="80%" width="80%" alt="Server Manager"/>
 </p>
 <p>
-Install Active Directory. USe Server Manager to install AD. In the Windows Server Manager, go to Add roles and features.
+Install Active Directory. Use Server Manager to install AD. In the Windows Server Manager, go to Add roles and features.
 </p>
 <br />
 
